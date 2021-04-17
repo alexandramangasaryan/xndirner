@@ -1,0 +1,5124 @@
+#include <iostream>
+using namespace std;
+class allInOne
+{
+public:
+	int Foo(int a)
+	{
+		allInOne obj;
+		int sum = 0;
+
+		for (int i = 0; i <= a; i++)
+		{
+			sum = sum + i;
+		}
+		obj.sum = sum;
+
+		int fakt = 1;
+
+		for (int i = 1; i <= a; i++)
+		{
+			fakt = fakt * i;
+		}
+		obj.fakt = fakt;
+
+		int b = sum + fakt;
+		cout << "sum + fakt = " << b << endl;
+		int count = 0;
+		int result = 0;
+		int num1 = 0, num2 = 1, next = 0;
+		cout << "Fibonacci hajordakanutyun - ";
+		for (int i = 2; i < b; i++)
+		{
+			if (num1 >= b)
+			{
+				break;
+			}
+			result = num1 + result;
+			cout << num1 << " ";
+			next = num1 + num2;
+			num1 = num2;
+			num2 = next;
+			count++;
+		}
+		cout << endl;
+		int end = result / count;
+		obj.fib = end;
+		cout << "gumar = " << obj.sum << endl;
+		cout << "faktorial = " << obj.fakt << endl;
+		cout << "Fibonacci mijin tvabanakan = " << obj.fib << endl;
+		return 0;
+	}
+
+	int sum;
+	int fakt;
+	int fib;
+};
+
+
+
+int main()
+{
+	int n;
+	cin >> n;
+	allInOne obj;
+	obj.Foo(n);
+
+	system("pause");
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+class Time
+{  
+	int day;
+	int hour;
+	int minute;
+	int second;
+public:
+	Time(int d, int h, int m, int s)
+	{
+		if (d >= 0)
+		{
+			day = d;
+		}
+		else day = 0;
+
+		if (h >= 0 && h < 24)
+		{
+			hour = h;
+		}
+		else
+		{
+			if (h >= 24)
+			{
+				day = day + h / 24;
+				hour = h % 24;
+			}
+			if (h < 0)
+			{
+				hour = 0;
+			}
+		}	
+
+		if (m >= 0 && m < 60)
+		{
+			minute = m;
+		}
+		else
+		{
+			if (m >= 60)
+			{
+				hour = hour + m / 60;
+				minute = m % 60;
+			}
+			if (m < 0)
+			{
+				minute = 0;
+			}
+		}
+
+		if (s >= 0 && s < 60)
+		{
+			second = s;
+		}
+		else {
+			if (s >= 60)
+			{
+				minute = minute + s / 60;
+				second = s % 60;
+			}
+			if (s < 0)
+			{
+				second = 0;
+			}
+		}
+	}
+	Time() {
+		day = 0;
+		hour = 0;
+		minute = 0;
+		second = 0;
+	}
+	/*Time sum(Time obj)
+	{
+		int d = day + obj.day;
+		int h = hour + obj.hour;
+		int m = minute + obj.minute;
+		int s = second + obj.second;
+		Time returnObj(d, h, m, s);
+		return returnObj;
+	}*/
+	Time operator+(Time obj)
+	{
+		int d = day + obj.day;
+		int h = hour + obj.hour;
+		int m = minute + obj.minute;
+		int s = second + obj.second;
+		Time returnObj(d, h, m, s);
+		return returnObj;
+	}
+	Time operator-(Time obj)
+	{
+		int d = day - obj.day;
+		int h = hour - obj.hour;
+		int m = minute - obj.minute;
+		int s = second - obj.second;
+		Time returnObj(d, h, m, s);
+		return returnObj;
+	}
+	Time operator*(Time obj)
+	{
+		int d = day * obj.day;
+		int h = hour * obj.hour;
+		int m = minute * obj.minute;
+		int s = second * obj.second;
+		Time returnObj(d, h, m, s);
+		return returnObj;
+	}
+	Time operator/(Time obj)
+	{
+		int d = day / obj.day;
+		int h = hour / obj.hour;
+		int m = minute / obj.minute;
+		int s = second / obj.second;
+		Time returnObj(d, h, m, s);
+		return returnObj;
+	}
+	Time operator>(Time obj)
+	{
+		int d, h, m, s;
+		if (day > obj.day)
+		{
+			d = day;
+		}
+		else { d = obj.day; }
+		if (hour > obj.hour)
+		{
+			h = hour;
+		}
+		else { h = obj.hour; }
+		if (minute > obj.minute)
+		{
+			m = minute;
+		}
+		else { m = obj.minute; }
+		if (second > obj.second)
+		{
+			s = second;
+		}
+		else { s = obj.second; }
+		Time returnObj(d, h, m, s);
+		return returnObj;
+	}
+	Time operator<(Time obj)
+	{
+		int d, h, m, s;
+		if (day < obj.day)
+		{
+			d = day;
+		}
+		else { d = obj.day; }
+		if (hour < obj.hour)
+		{
+			h = hour;
+		}
+		else { h = obj.hour; }
+		if (minute < obj.minute)
+		{
+			m = minute;
+		}
+		else { m = obj.minute; }
+		if (second < obj.second)
+		{
+			s = second;
+		}
+		else { s = obj.second; }
+		Time returnObj(d, h, m, s);
+		return returnObj;
+	}
+	void setDay(int d)
+	{
+		if (d >= 0)
+		{
+			day = d;
+		}
+		else day = 0;
+	}
+	int getDay()
+
+	{
+		return day;
+	}
+	void setHour(int h)
+	{
+		if (h >= 0 && h < 24)
+		{
+			hour = h;
+		}
+		else
+		{
+			if (h >= 24)
+			{
+				day = day + h / 24;
+				hour = h % 24;
+			}
+			if (h < 0)
+			{
+				hour = 0;
+			}
+		}
+	}
+	int getHour()
+
+	{
+		return hour;
+	}
+	void setMinute(int m)
+	{
+		if (m >= 0 && m < 60)
+		{
+			minute = m;
+		}
+		else
+		{
+			if (m >= 60)
+			{
+				hour = hour + m / 60;
+				minute = m % 60;
+			}
+			if (m < 0)
+			{
+				minute = 0;
+			}
+		}
+	}
+	int getMinute()
+
+	{
+		return minute;
+	}
+	void setSecond(int s)
+	{
+		if (s >= 0 && s < 60)
+		{
+			second = s;
+		}
+		else {
+			if (s >= 60)
+			{
+				minute = minute + s / 60;
+				second = s % 60;
+			}
+			if (s < 0)
+			{
+				second = 0;
+			}
+		}
+	}
+	int getSecond()
+
+	{
+		return second;
+	}
+};
+int main()
+{
+	int day, hour, minute, second;
+	int day1, hour1, minute1, second1;
+	cin >> day >> hour >> minute >> second;
+	cin >> day1 >> hour1 >> minute1 >> second1;
+	Time time1(day, hour, minute, second);
+	Time time2(day1, hour1, minute1, second1);
+	Time time3;
+	time3 = time1 + time2;
+	cout << time1.getDay() << " " << time1.getHour() << " " << time1.getMinute() << " " << time1.getSecond() << endl;
+	cout << time2.getDay() << " " << time2.getHour() << " " << time2.getMinute() << " " << time2.getSecond() << endl;
+	cout << time3.getDay() << " " << time3.getHour() << " " << time3.getMinute() << " " << time3.getSecond() << endl;
+	system("pause");
+	return 0;
+}
+
+#include <iostream>
+#include <random>
+using namespace std;
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+
+		arr[n++] = num;
+
+
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int geti(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	void remove(int index)
+	{
+		int* newArr = new int[count];
+		for (int i = 0; i < n; i++) {
+			if (i != index)
+			{
+				newArr[i] = arr[i];
+			}
+			else {
+				newArr[i] = arr[i + 1];
+				i++;
+			}
+			cout << arr[i] << " ";
+		}
+		delete[] arr;
+		arr = newArr;
+		cout << endl;
+	}
+
+	void removeFromTo(int start, int end)
+	{
+		int* newArr = new int[count];
+		for (int i = 0; i < n; i++) {
+			while (i >= start && i <= end)
+			{
+				i++;
+			}
+			newArr[i] = arr[i];
+			cout << arr[i] << " ";
+		}
+		delete[] arr;
+		arr = newArr;
+		cout << endl;
+	}
+
+	void change(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+		
+	}
+};
+int main()
+{
+
+
+
+	ArrayList obj;
+	obj.add(0);
+	obj.add(1);
+	obj.add(2);
+	obj.add(3);
+	obj.add(4);
+	obj.add(5);
+	cout << "object length is " << obj.getLength()<<endl;
+	cout << "array length is " << obj.getArrayLength()<<endl;
+	for (int i = 0; i < obj.getLength(); i++) {
+
+		cout << obj.geti(i) << " ";
+	}
+	cout << endl;
+
+//	obj.remove(2);
+//	obj.removeFromTo(2, 4);
+	obj.change(2, 9);
+	
+	cout << endl;
+
+	system("pause");
+	return 0;
+}
+18.02.2020, 16:35
+Вы отправили 18 февраля 2020 г.
+void remove(int index)
+	{
+		arr[n--];
+		if (arr[n] != NULL)
+		{
+			for (int i = 0; i <= n; i++) {
+				{
+					if (i == index)
+					{
+						arr[i] = arr[i + 1];
+						i++;
+					}
+				}
+				count--;
+				cout << arr[i] << " ";
+			}
+			
+		}
+Вы отправили 18 февраля 2020 г.
+void remove(int index)
+	{
+		arr[n--];
+		
+		while (count != n)
+		{
+			count--;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	void removeFromTo(int start, int end)
+	{
+		
+		for (int i = 0; i <= count; i++) {
+			while (i >= start && i <= end)
+			{
+				i++;
+				n--;
+				count--;
+			}
+			
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+		while (n != count)
+		{
+			count--;
+		}
+		
+	}
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+
+		arr[n++] = num;
+
+
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int geti(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	void remove(int index)
+	{
+		arr[n--];
+		while (count == n)
+		{
+			count / 2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	void removeFromTo(int start, int end)
+	{
+		int k = count - end;
+		int def = count / n;
+
+		for (int i = 0; i < k; i++) {
+			while (i >= start && i <= end)
+			{
+				i++;
+				n--;
+			}
+			cout << arr[i] << " ";
+			for (int i = 1; i < def / 2; i++)
+			{
+				count / 2;
+				cout << count;
+			}
+		}
+		cout << endl;
+
+
+	}
+
+	void change(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+int main()
+{
+
+	ArrayList obj;
+	obj.add(0);
+	obj.add(1);
+	obj.add(2);
+	obj.add(3);
+	obj.add(4);
+	obj.add(5);
+	obj.add(6);
+	obj.add(7);
+	obj.add(8);
+	obj.add(9);
+	obj.add(10);
+	obj.add(11);
+
+	cout << "object length is " << obj.getLength() << endl;
+	cout << "array length is " << obj.getArrayLength() << endl;
+	for (int i = 0; i < obj.getLength(); i++) {
+
+		cout << obj.geti(i) << " ";
+	}
+	cout << endl;
+
+	//obj.remove(2);
+	obj.removeFromTo(2, 8);
+	cout << "object length is " << obj.getLength() << endl;
+	cout << "array length is " << obj.getArrayLength() << endl;
+	//	
+	//obj.change(2, 9);
+
+	cout << endl;
+
+	system("pause");
+	return 0;
+}
+27.02.2020, 16:12
+Вы отправили 27 февраля 2020 г.
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	geometry(){}
+	geometry(int w, int h)
+	{
+		w = width;
+		h = height;
+	}
+};
+class rectangle:public geometry
+{
+public:
+	rectangle(){}
+	rectangle(int w1, int h1) :geometry(w1, h1){}
+
+	int s()
+	{
+		return width * height;
+	}
+
+	int p()
+	{
+		return 2 * (width + height);
+	}
+};
+class square:public geometry,public rectangle
+{
+public:
+	square(){}
+	square(int side):geometry(side,side),rectangle(side,side){}
+};
+class triangle :public geometry
+{
+//protected:
+//	int a, b, c;
+public:
+	triangle(){}
+	//triangle(int a1, int b1, int c1)
+	//{
+	//	a = a1;
+	//	b = b1;
+	//	c = c1;
+	//}
+	triangle(int width, int height):geometry(width,height){}
+	int s()
+	{
+		return width * height / 2;
+	}
+	/*int p()
+	{
+		return a + b + c;
+	}*/
+};
+
+int main()
+{
+	rectangle rct(4, 9);
+	square sqr(6);
+	triangle trgl(2, 8);
+	cout << "rectrangle s = " << rct.s() << endl;
+	cout << "rectrangle p = " << rct.p() << endl;
+	cout << "triangle s = " << trgl.s() << endl;
+//	cout << "triangle p = " << trgl.p() << endl;
+	cout << "square s = " << sqr.s() << endl;
+	cout << "square p = " << sqr.p() << endl;
+
+
+	system("pause");
+	return 0;
+}
+Вы отправили 27 февраля 2020 г.
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	
+	geometry(int w, int h)
+	{
+		w = width;
+		h = height;
+	}
+	int s()
+	{
+		return width * height;
+	}
+
+	int p()
+	{
+		return 2 * (width + height);
+	}
+};
+class rectangle :public geometry
+{
+public:
+	
+	rectangle(int w1, int h1) :geometry(w1, h1) {}
+
+
+};
+class square : public rectangle
+{
+public:
+	square(int side) : rectangle(side, side) {}
+};
+class triangle :public geometry
+{
+	protected:
+	double c;
+public:
+	triangle(double a1, double b1, double c1) :geometry(a1, b1)
+	{
+		c = c1;
+	}
+	int p()
+	{
+		return width + height + c;
+	}
+
+	int s()
+	{
+		double k = p() / 2;
+		int result = sqrt(k * (k - width) * (k - height) * (k - c));
+		return result;
+	}
+
+};
+
+int main()
+{
+	rectangle rct(5, 3);
+	square sqr(4);
+	triangle trgl(3, 4, 5);
+	cout << "rectrangle s = " << rct.s() << endl;
+	cout << "rectrangle p = " << rct.p() << endl;
+	cout << "square s = " << sqr.s() << endl;
+	cout << "square p = " << sqr.p() << endl;
+	cout << "triangle s = " << trgl.s() << endl;
+	cout << "triangle p = " << trgl.p() << endl;
+	
+
+
+	system("pause");
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	geometry(){}
+	geometry(int w, int h)
+	{
+		width = w;
+		height = h;
+	}
+	virtual int s() = 0;
+
+	virtual int p() = 0;
+
+};
+class tetragon: public geometry
+{
+protected:
+	int c;
+	int d;
+public:
+	tetragon(int a, int b, int c1, int d1) :geometry(a, b)
+	{
+		c = c1;
+		d = d1;
+	}
+	virtual int p()
+	{
+		return width + height + c + d;
+	}
+};
+
+//class parallelogram : public tetragon
+//{
+//public:
+//	parallelogram(int a, int b):tetragon(a,b,a,b){}
+//	virtual int p()
+//	{
+//		return 2 * (width + height);
+//	}
+//	virtual int s()
+//	{
+//
+//	}
+//};
+
+class rectangle :public geometry
+{
+public:
+
+	rectangle(int w1, int h1) :geometry(w1, h1) {}
+	virtual int p() override
+	{
+
+
+		int h = 2 * (width + height);
+
+		return h;
+	}
+	virtual int s() override
+	{
+		return width * height;
+	}
+};
+class square : public rectangle
+{
+public:
+	square(int side) : rectangle(side, side) {}
+
+
+};
+
+class triangle :protected geometry
+{
+protected:
+	double c;
+public:
+	triangle(double a1, double b1, double c1) :geometry(a1, b1)
+	{
+		c = c1;
+	}
+	virtual int p() override
+	{
+		return width + height + c;
+	}
+
+	virtual int s() override
+	{
+		double k = p() / 2;
+		int result = sqrt(k * (k - width) * (k - height) * (k - c));
+		return result;
+	}
+};
+
+class isoscelesTriangle :public triangle
+{
+public:
+	isoscelesTriangle(double a, double c) :triangle(a, a, c)
+	{
+	}
+
+	virtual int s()
+	{
+		double h = sqrt(width*width - c / 2 * c / 2);
+		double S = c * h / 2;
+		return S;
+	}
+
+};
+
+class equilateralTriangle :public isoscelesTriangle
+{
+public:
+	equilateralTriangle(double a1) :isoscelesTriangle(a1, a1){}
+	int s()
+	{
+		double S1 = sqrt(3)*width*width / 2;
+		return S1;
+	}
+};
+
+class rectangularTriangle :protected triangle
+{
+public:
+	rectangularTriangle(double a, double b, double c):triangle(a,b,c){}
+	int s()
+	{
+		return width*height / 2;
+	}
+};
+
+class circle :public geometry
+{
+protected:
+	int r;
+public:
+	circle(int radius)
+	{
+		r = radius;
+	}
+	int s()
+	{
+		return 3.14*r*r;
+	}
+};
+
+class hexagon :public geometry
+{
+public:
+	hexagon(double a):geometry(a,a){}
+	int s()
+	{
+		return 3 * sqrt(3)*width*width / 2;
+	}
+};
+int main()
+{
+	/*rectangle rct(5, 3);
+	square sqr(4);*/
+	triangle trgl(3, 4, 5);
+
+
+	/*cout << "rectrangle s = " << rct.s() << endl;
+	cout << "rectrangle p = " << rct.p() << endl;
+	cout << "square s = " << sqr.s() << endl;
+	cout << "square p = " << sqr.p() << endl;*/
+	cout << "triangle s = " << trgl.s() << endl;
+	cout << "triangle p = " << trgl.p() << endl;
+
+
+
+	system("pause");
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	string type; 
+	geometry() {}
+	geometry(int w, int h)
+	{
+		width = w;
+		height = h;
+	}
+	virtual int s() = 0;
+
+	virtual int p() = 0;
+
+};
+class tetragon : public geometry
+{
+protected:
+	int c;
+	int d;
+public:
+	tetragon(int a, int b, int c1, int d1) :geometry(a, b)
+	{
+		c = c1;
+		d = d1;
+	}
+	virtual int p()
+	{
+		return width + height + c + d;
+	}
+};
+
+//class parallelogram : public tetragon
+//{
+//public:
+//	parallelogram(int a, int b):tetragon(a,b,a,b){}
+//	virtual int p()
+//	{
+//		return 2 * (width + height);
+//	}
+//	virtual int s()
+//	{
+//
+//	}
+//};
+
+class rectangle :public geometry
+{
+public:
+	rectangle() {};
+	rectangle(int w1, int h1) :geometry(w1, h1) {}
+	virtual int p() override
+	{
+
+
+		int h = 2 * (width + height);
+
+		return h;
+	}
+	virtual int s() override
+	{
+		return width * height;
+	}
+};
+class square : public rectangle
+{
+public:
+	square() {};
+	square(int side) : rectangle(side, side) {}
+};
+
+class triangle :protected geometry
+{
+protected:
+	double c;
+public:
+	string type;
+	triangle() {};
+	triangle(double a1, double b1, double c1) :geometry(a1, b1)
+	{
+		c = c1;
+	}
+	virtual int p() override
+	{
+		return width + height + c;
+	}
+
+	virtual int s() override
+	{
+		double k = p() / 2;
+		int result = sqrt(k * (k - width) * (k - height) * (k - c));
+		return result;
+	}
+};
+
+class isoscelesTriangle :public triangle
+{
+public:
+	isoscelesTriangle() {};
+	isoscelesTriangle(double a, double c) :triangle(a, a, c)
+	{
+	}
+
+	virtual int s()
+	{
+		double h = sqrt(width*width - c / 2 * c / 2);
+		double S = c * h / 2;
+		return S;
+	}
+
+};
+
+class equilateralTriangle :public isoscelesTriangle
+{
+public:
+	equilateralTriangle() {};
+	equilateralTriangle(double a1) :isoscelesTriangle(a1, a1) {}
+	int s()
+	{
+		double S1 = sqrt(3)*width*width / 2;
+		return S1;
+	}
+};
+
+class rectangularTriangle :public triangle
+{
+public:
+	string type;
+	rectangularTriangle() {};
+	rectangularTriangle(double a, double b, double c) :triangle(a, b, c) {}
+	int s()
+	{
+		return width * height / 2;
+	}
+};
+
+class circle :public geometry
+{
+protected:
+	int r;
+public:
+	circle() {};
+	circle(int radius)
+	{
+		r = radius;
+	}
+	int s()
+	{
+		return 3.14*r*r;
+	}
+	int p()
+	{
+		cout << "000";
+	}
+};
+
+class hexagon :public geometry
+{
+protected:
+	int c, d, e, f;
+public:
+	hexagon() {};
+	hexagon(int a1, int b1, int c1, int d1, int e1, int f1) :geometry(a1, b1)
+	{
+		c = c1;
+		d = d1;
+		e = e1;
+		f = f1;
+	}
+	hexagon(double a) :geometry(a, a) {}
+	int s()
+	{
+		return 3 * sqrt(3)*width*width / 2;
+	}
+	int p()
+	{
+		return width + height + c + d + e + f;
+	}
+};
+
+
+void foo(geometry *obj)
+{
+	cout << obj->type << " parimetr = " << obj->p() << " square = " << obj->s();
+}
+void foo1(triangle *trgl)
+{
+	cout << trgl->type << " parimetr = " << trgl->p() << " square = " << trgl->s();
+}
+int main()
+{
+	
+
+
+	rectangle Robj;
+	Robj.type = "rectangle";
+
+	square Sobj;
+	Sobj.type = "square";
+
+	triangle Tobj;
+	Tobj.type = "triangle";
+
+	isoscelesTriangle ITobj;
+	ITobj.type = "isosceles triangle";
+
+	equilateralTriangle ETObj;
+	ETObj.type = "equilateral triangle";
+
+	rectangularTriangle RTobj;
+	RTobj.type = "rectangular triangle";
+
+	circle Cobj;
+	Cobj.type = "circle";
+
+	hexagon Hobj;
+	Hobj.type = "hexagon";
+
+	int n;
+	cin >> n;
+
+	geometry * obj = NULL;
+	triangle * trObj = NULL;
+
+	switch 👎
+	{
+	case 1:
+		obj = &Robj;
+		foo(obj);
+
+		break;
+	case 2:
+		obj = &Sobj;
+		foo(obj);
+
+		break;
+	case 3:
+		obj = &Cobj;
+		foo(obj);
+
+		break;
+	case 4:
+		obj = &Hobj;
+		foo(obj);
+
+		break;
+	case 5:
+		trObj = &Tobj;
+		foo1(trObj);
+
+		break;
+	case 6:
+		trObj = &ITobj;
+		foo1(trObj);
+
+		break;
+	case 7:
+		trObj = &ETObj;
+		foo1(trObj);
+
+		break;
+	case 8:
+		trObj = &RTobj;
+		foo1(trObj);
+
+		break;
+	default:
+		break;
+	}
+	
+
+	system("pause");
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+struct Node
+{
+	int data;
+	Node* next;
+	Node* prev;
+};
+
+class LinkedList {
+
+public:
+	int count = 0;
+	Node *head = NULL;
+
+	void addFirst(int addData)
+	{
+		count++;
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->next = head;
+		dataNode->prev = NULL;
+		if (head != NULL)
+		{
+			dataNode->prev = dataNode;
+		}
+		head = dataNode;
+	}
+
+	int add(int index, int new_data) {
+
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+				index = 0;
+		}
+
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		returnNodeData->data = new_data;
+		return returnNodeData->data;
+	}
+
+
+	void addLast(int addData) {
+
+		count++;
+		Node *prev_node = head;
+		for (int i = 0; i < count - 2; i++)
+		{
+			prev_node = prev_node->next;
+		}
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->next = prev_node->next;
+		prev_node->next = dataNode;
+		dataNode->prev = prev_node;
+
+	}
+
+
+	void clear()
+	{
+		Node *node = head;
+		while (node != NULL)
+		{
+			delete node;
+			node = head->next;
+		}
+		cout << "the list is clear" << endl;
+	}
+
+	bool contains(int element)
+	{
+		Node *node = head;
+
+		while (node != NULL)
+		{
+			if (node->data == element)
+			{
+				return  true;
+			}
+			node = node->next;
+		}
+
+		return false;
+	}
+
+	int get(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		return returnNodeData->data;
+
+	}
+
+
+	int getFirst()
+	{
+		return head->data;
+	}
+
+
+	int getLast()
+	{
+		Node* lastElement = head;
+		while (lastElement->next != NULL)
+		{
+			lastElement = lastElement->next;
+		}
+		return lastElement->data;
+	}
+
+	int indexOf(int value)
+	{
+		int position;
+		Node* node = head;
+		bool present = false;
+		for (position = 0; position < count; position++) {
+
+			if (node->data == value)
+			{
+				present = true;
+				return position;
+			}			
+			node = node->next;
+		}
+		if (present)
+		{
+			return -1;//???
+		}
+	}
+
+	int removeFirst()
+	{
+		int element = head->data;
+		delete head;
+		return element;
+	}
+
+	int removeLast()
+	{
+		Node *node = head;
+		while (node != NULL)
+		{
+			if (node->next == NULL)
+			{
+				int element = node->data;
+				delete node;
+				return element;
+			}
+		}
+	}
+
+	int remove(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* removeIndex = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			removeIndex = removeIndex->next;
+		}
+		int element = removeIndex->data;
+		delete removeIndex;
+		return element;
+
+	}
+
+	int toArray()
+	{
+		int * arr = new int[count];
+		Node* node = head;
+		for (int i = 0; i < count; i++)
+		{
+			arr[i] = node->data;
+			node = node->next;
+			cout << arr[i] << " ";
+		}
+			return *arr;
+	}
+
+	int size()
+	{
+		return count;
+	}
+
+	void printList()
+	{
+		while (head != NULL) {
+			cout << head->data << " ";
+			head = head->next;
+		}
+		cout << endl;
+	}	
+};
+
+
+int main()
+{
+
+
+	LinkedList obj;
+	obj.addFirst(1);
+	obj.addFirst(8);
+	obj.addFirst(6);
+	obj.addFirst(25);
+	obj.addFirst(74);
+	obj.addFirst(17);
+	obj.addFirst(4);	
+	obj.addLast(99);
+
+	system("pause");
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+struct Node
+{
+	int data;
+	Node* next;
+	Node* prev;
+};
+
+//class List {
+//public:
+//	virtual int add(int index, int element) = 0;
+//	virtual void addFirst(int value) = 0;
+//	virtual void addLast(int value) = 0;
+//	virtual void clear() = 0;
+//	virtual bool contains(int element) = 0;
+//	virtual int get(int index) = 0;
+//	virtual int getFisrt() = 0;
+//	virtual int getLast() = 0;
+//	virtual int indexOf(int value) = 0;
+//	virtual int removeFirst() = 0;
+//	virtual int removeLast() = 0;
+//	virtual int remove(int index) = 0;
+//	virtual int toArray() = 0;
+//	virtual int size() = 0;
+//};
+
+class LinkedList {
+
+public:
+	int count = 0;
+	Node *head = NULL;
+
+	
+	int add(int index, int new_data) {
+
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+				index = 0;
+		}
+
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		returnNodeData->data = new_data;
+		return returnNodeData->data;
+	}
+
+	void addFirst(int addData)
+	{
+		count++;
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->next = head;
+		dataNode->prev = NULL;
+		if (head != NULL)
+		{
+			dataNode->prev = dataNode;
+		}
+		head = dataNode;
+	}
+
+
+	void addLast(int addData) {
+
+		count++;
+		Node *prev_node = head;
+		for (int i = 0; i < count - 2; i++)
+		{
+			prev_node = prev_node->next;
+		}
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->next = prev_node->next;
+		prev_node->next = dataNode;
+		dataNode->prev = prev_node;
+
+	}
+
+
+	void clear()
+	{
+		Node *node = head;
+		while (node != NULL)
+		{
+			delete node;
+			node = head->next;
+		}
+		cout << "the list is clear" << endl;
+	}
+
+	bool contains(int element)
+	{
+		Node *node = head;
+
+		while (node != NULL)
+		{
+			if (node->data == element)
+			{
+				return  true;
+			}
+			node = node->next;
+		}
+
+		return false;
+	}
+
+	int get(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		return returnNodeData->data;
+
+	}
+
+
+	int getFirst()
+	{
+		return head->data;
+	}
+
+
+	int getLast()
+	{
+		Node* lastElement = head;
+		while (lastElement->next != NULL)
+		{
+			lastElement = lastElement->next;
+		}
+		return lastElement->data;
+	}
+
+	int indexOf(int value)
+	{
+		int position;
+		Node* node = head;
+		bool present = false;
+		for (position = 0; position < count; position++) {
+
+			if (node->data == value)
+			{
+				present = true;
+				return position;
+			}			
+			node = node->next;
+		}
+		if (present)
+		{
+			return -1;//???
+		}
+	}
+
+	int removeFirst()
+	{
+		int element = head->data;
+		delete head;
+		return element;
+	}
+
+	int removeLast()
+	{
+		Node *node = head;
+		while (node != NULL)
+		{
+			if (node->next == NULL)
+			{
+				int element = node->data;
+				delete node;
+				return element;
+			}
+		}
+	}
+
+	int remove(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* removeIndex = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			removeIndex = removeIndex->next;
+		}
+		int element = removeIndex->data;
+		delete removeIndex;
+		return element;
+
+	}
+
+	int toArray()
+	{
+		int * arr = new int[count];
+		Node* node = head;
+		for (int i = 0; i < count; i++)
+		{
+			arr[i] = node->data;
+			node = node->next;
+			cout << arr[i] << " ";
+		}
+			return *arr;
+	}
+
+	int set(int index, int value)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* node = head;
+		for (int i = 0; i < count - index - 1; i++)
+		{
+			node = node->next;
+		}
+		int k = node->data;
+		node->data = value;
+		return k;
+	}
+
+	int size()
+	{
+		return count;
+	}
+
+	void printList()
+	{
+		while (head != NULL) {
+			cout << head->data << " ";
+			head = head->next;
+		}
+		cout << endl;
+	}	
+};
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+
+		arr[n++] = num;
+
+
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int geti(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	int getFirst()
+	{
+		return arr[0];
+	}
+
+	int getLast()
+	{
+		return arr[n];
+	}
+
+	void remove(int index)
+	{
+		if (index <0 || index > n)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		arr[n--];
+		while (count == n)
+		{
+			count / 2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	int indexOf(int value)
+	{
+		bool present = false;
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == value)
+			{
+				return i;
+				present = true;
+			}
+		}
+		if (present)
+		{
+			cout << "no value found" << endl;
+		}
+
+	}
+
+	bool contains(int element)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == element)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void set(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+
+int main()
+{
+
+
+	LinkedList obj;
+	obj.addFirst(1);
+	obj.addFirst(8);
+	obj.addFirst(6);
+	obj.addFirst(25);
+	obj.addFirst(74);
+	obj.addFirst(17);
+	obj.addFirst(4);	
+	obj.addLast(99);
+
+	system("pause");
+	return 0;
+}
+14.03.2020, 12:05
+Вы отправили 14 марта 2020 г.
+#include <iostream>
+using namespace std;
+struct Node
+{
+	int data;
+	Node* next;
+	Node* prev;
+};
+
+//class List {
+//public:
+//	virtual void addFirst(int value) = 0;
+//	virtual void addLast(int value) = 0;
+//	virtual void clear() = 0;
+//	virtual bool contains(int element) = 0;
+//	virtual int get(int index) = 0;
+//	virtual int getFisrt() = 0;
+//	virtual int getLast() = 0;
+//	virtual int indexOf(int value) = 0;
+//	virtual int removeFirst() = 0;
+//	virtual int removeLast() = 0;
+//	virtual int remove(int index) = 0;
+//	virtual int toArray() = 0;
+//	virtual int size() = 0;
+//};
+
+class LinkedList {
+	int count = 0;
+	Node* head = NULL;
+	Node* tail = NULL;
+public:
+
+	void addFirst(int addData)
+	{
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->prev = NULL;
+		if (head == NULL)
+		{
+			dataNode->next = NULL;
+			tail = dataNode;
+		}
+		else
+		{
+			head->prev = dataNode;
+			dataNode->next = head;
+		}
+		head = dataNode;
+		count++;
+	}
+
+
+	void addLast(int addData) {
+
+		Node* prev_node = tail;
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		if (tail == NULL) {
+			dataNode->prev = NULL;
+			head = dataNode;
+		}
+		else {
+			tail->next = dataNode;
+			dataNode->prev = tail;
+		}
+		tail = dataNode;
+		count++;
+	}
+
+
+	bool contains(int element)
+	{
+		Node* node = head;
+
+		while (node != NULL)
+		{
+			if (node->data == element)
+			{
+				return  true;
+			}
+			node = node->next;
+		}
+
+		return false;
+	}
+
+	int get(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		if (index == 0)
+		{
+			return head->data;
+		}
+		if (index == count)
+		{
+			return tail->data;
+		}
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		return returnNodeData->data;
+	}
+
+
+	int getLast()
+	{
+		return head->data;
+	}
+
+
+	int getFirst()
+	{
+		return tail->data;
+	}
+
+	int indexOf(int value)
+	{
+		int position;
+		Node* node = tail;
+		for (position = 1; position < count; position++) {
+
+			if (node->data == value)
+			{
+				return position;
+			}
+			node = node->prev;
+		}
+		return -1;
+	}
+
+	void clear()
+	{
+		Node* node = head;
+		while (node != NULL)
+		{
+			Node* k = node->prev;
+			delete node;
+			node = k;
+			count--;
+		}
+		cout << "the list is clear" << endl;
+	}
+
+	int removeFirst()
+	{
+		Node* prev_node = head->next;
+		Node* node = head;
+		int element = node->data;
+		delete node;
+		node = prev_node;
+		cout << "NEW HEAD IS " << node->data << endl;
+		count--;
+
+		return element;
+	}
+
+	int removeLast()
+	{
+		Node* next_node = tail->prev;
+		Node* node = tail;
+		int element = node->data;
+		delete node;
+		node = next_node;
+		cout << "NEW TAIL IS " << next_node->data << endl;
+		count--;
+		return element;
+	}
+
+
+	int remove(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		if (index == 0)
+		{
+			removeFirst();
+		}
+		if (index == count)
+		{
+			removeLast();
+		}
+
+		Node* removeIndex = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			removeIndex = removeIndex->next;
+		}
+		Node* node_next = removeIndex->next;
+		Node* node_prev = removeIndex->prev;
+		int element = removeIndex->data;
+		delete removeIndex;
+		node_next = node_prev;//????
+		return element;
+
+	}
+
+	int toArray()
+	{
+		int* arr = new int[count];
+		Node* node = head;
+		for (int i = 0; i < count; i++)
+		{
+			arr[i] = node->data;
+			node = node->next;
+			cout << arr[i] << " ";
+		}
+		return *arr;
+	}
+
+	int set(int index, int value)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		int k;
+		if (index == 0)
+		{
+			k = head->data;
+			head->data = value;
+			return k;
+		}
+		if (index == count)
+		{
+			k = tail->data;
+			tail->data = value;
+			return k;
+		}
+		Node* node = head;
+		for (int i = 0; i < count - index - 1; i++)
+		{
+			node = node->next;
+		}
+		k = node->data;
+		node->data = value;
+		return k;
+	}
+
+	int size()
+	{
+		return count;
+	}
+
+	/*void printFromHead()
+	{
+		Node* headPrint = head;
+		while (headPrint != NULL) {
+			cout << headPrint->data << " ";
+			headPrint = headPrint->prev;
+		}
+		cout << endl;
+	}*/
+};
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+		arr[n++] = num;
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int get(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	int getFirst()
+	{
+		return arr[0];
+	}
+
+	int getLast()
+	{
+		return arr[n];
+	}
+
+	int remove(int index)
+	{
+		if (index <0 || index > n)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		arr[n--];
+		while (count == n)
+		{
+			count / 2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	int indexOf(int value)
+	{
+		bool present = false;
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == value)
+			{
+				return i;
+				present = true;
+			}
+		}
+		if (present)
+		{
+			cout << "no value found" << endl;
+		}
+
+	}
+
+	bool contains(int element)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == element)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void set(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+
+int main()
+{
+	LinkedList obj;
+	obj.addFirst(1);
+	obj.addFirst(8);
+	obj.addFirst(6);
+	obj.addFirst(25);
+	obj.addFirst(74);
+	obj.addFirst(17);
+	obj.addFirst(4);
+
+
+	system("pause");
+	return 0;
+}
+
+#include <iostream>
+using namespace std;
+class Faculty {
+private:
+	int student_count;
+	char faculty_name[15];
+	int fee;
+public:
+	int get_count() {
+		return 	student_count;
+	}
+	char* get_name() {
+		return faculty_name;
+	}
+	int get_fee() {
+		return 	fee;
+	}
+	void set_count() {
+		cout << "mutqagreq usanoxneri qanaky" << endl;
+		cin >> student_count;
+	}
+	void set_name() {
+		cout << "mutqagreq fakulteti anvanumy" << endl;
+		cin >> faculty_name;
+	}
+	void set_fee() {
+		cout << "mutqagreq vardzavchary" << endl;
+		cin >> fee;
+	}
+
+/*	void out() {
+		cout << student_count;
+		cout << faculty_name;
+		cout << fee;
+	}*/
+};
+
+void main()
+{
+	Faculty obj;
+	obj.set_count();
+	obj.set_name();
+	obj.set_fee();
+
+
+	cout << "sexmeq 1 usanoxneri qanaky tesnelu hamar" << endl;
+	cout << "sexmeq 2 fakulteti anuny tesnelu hamar" << endl;
+	cout << "sexmeq 3 vardzvchary tesnelu hamar" << endl;
+	cout << "sexmeq 0 exit-i hamar" << endl;
+	int k;
+	cin >> k;
+		switch (k)
+		{
+		case 1:
+		{
+			cout << obj.get_count() << endl;
+			break;
+		}
+		case 2: {
+			cout << obj.get_name() << endl;
+			break;
+		}
+		case 3: {
+			cout << obj.get_fee() << endl;
+			break;
+		}
+		case 0:
+		{
+			cout << "exit" << endl;
+			return;
+		}
+		default:
+			cout << "sxal operacia" << endl;
+			break;
+		}
+}
+
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	string type;
+	geometry() {}
+	geometry(int w, int h)
+	{
+		width = w;
+		height = h;
+	}
+	virtual int s() = 0;
+
+	virtual int p() = 0;
+
+};
+class tetragon : public geometry
+{
+protected:
+	int c;
+	int d;
+public:
+	tetragon(int a, int b, int c1, int d1) :geometry(a, b)
+	{
+		c = c1;
+		d = d1;
+	}
+	virtual int p()
+	{
+		return width + height + c + d;
+	}
+};
+
+//class parallelogram : public tetragon
+//{
+//public:
+//	parallelogram(int a, int b):tetragon(a,b,a,b){}
+//	virtual int p()
+//	{
+//		return 2 * (width + height);
+//	}
+//	virtual int s()
+//	{
+//
+//	}
+//};
+
+class rectangle :public geometry
+{
+public:
+	rectangle() {};
+	rectangle(int w1, int h1) :geometry(w1, h1) {}
+	virtual int p() override
+	{
+
+
+		int h = 2 * (width + height);
+
+		return h;
+	}
+	virtual int s() override
+	{
+		return width * height;
+	}
+};
+class square : public rectangle
+{
+public:
+	square() {};
+	square(int side) : rectangle(side, side) {}
+};
+
+class triangle :protected geometry
+{
+protected:
+	double c;
+public:
+	string type;
+	triangle() {};
+	triangle(double a1, double b1, double c1) :geometry(a1, b1)
+	{
+		c = c1;
+	}
+	virtual int p() override
+	{
+		return width + height + c;
+	}
+
+	virtual int s() override
+	{
+		double k = p() / 2;
+		int result = sqrt(k * (k - width) * (k - height) * (k - c));
+		return result;
+	}
+};
+
+class isoscelesTriangle :public triangle
+{
+public:
+	isoscelesTriangle() {};
+	isoscelesTriangle(double a, double c) :triangle(a, a, c)
+	{
+	}
+
+	virtual int s()
+	{
+		double h = sqrt(width*width - c / 2 * c / 2);
+		double S = c * h / 2;
+		return S;
+	}
+
+};
+
+class equilateralTriangle :public isoscelesTriangle
+{
+public:
+	equilateralTriangle() {};
+	equilateralTriangle(double a1) :isoscelesTriangle(a1, a1) {}
+	int s()
+	{
+		double S1 = sqrt(3)*width*width / 2;
+		return S1;
+	}
+};
+
+class rectangularTriangle :public triangle
+{
+public:
+	string type;
+	rectangularTriangle() {};
+	rectangularTriangle(double a, double b, double c) :triangle(a, b, c) {}
+	int s()
+	{
+		return width * height / 2;
+	}
+};
+
+class circle :public geometry
+{
+protected:
+	int r;
+public:
+	circle() {};
+	circle(int radius)
+	{
+		r = radius;
+	}
+	int s()
+	{
+		return 3.14*r*r;
+	}
+	int p()
+	{
+		cout << "000";
+	}
+};
+
+class hexagon :public geometry
+{
+protected:
+	int c, d, e, f;
+public:
+	hexagon() {};
+	hexagon(int a1, int b1, int c1, int d1, int e1, int f1) :geometry(a1, b1)
+	{
+		c = c1;
+		d = d1;
+		e = e1;
+		f = f1;
+	}
+	hexagon(double a) :geometry(a, a) {}
+	int s()
+	{
+		return 3 * sqrt(3)*width*width / 2;
+	}
+	int p()
+	{
+		return width + height + c + d + e + f;
+	}
+};
+
+
+void foo(geometry *obj)
+{
+	cout << obj->type << " parimetr = " << obj->p() << " square = " << obj->s();
+}
+void foo1(triangle *trgl)
+{
+	cout << trgl->type << " parimetr = " << trgl->p() << " square = " << trgl->s();
+}
+int main()
+{
+	
+
+
+	rectangle Robj;
+	Robj.type = "rectangle";
+
+	square Sobj;
+	Sobj.type = "square";
+
+	triangle Tobj;
+	Tobj.type = "triangle";
+
+	isoscelesTriangle ITobj;
+	ITobj.type = "isosceles triangle";
+
+	equilateralTriangle ETObj;
+	ETObj.type = "equilateral triangle";
+
+	rectangularTriangle RTobj;
+	RTobj.type = "rectangular triangle";
+
+	circle Cobj;
+	Cobj.type = "circle";
+
+	hexagon Hobj;
+	Hobj.type = "hexagon";
+
+	int n;
+	cin >> n;
+
+	geometry * obj = NULL;
+	switch 👎
+	{
+	case 1:
+		obj = &Robj;
+		break;
+	case 2:
+		obj = &Sobj;
+		break;
+	case 3:
+		obj = &Cobj;
+		break;
+	case 4:
+		obj = &Hobj;
+		break;
+	default:
+		break;
+	}
+	foo(obj);
+
+
+	int m;
+	cin >> m;
+
+	triangle * trObj;
+	switch (m)
+	{
+	case 1:
+		trObj = &Tobj;
+		break;
+	case 2:
+		trObj = &ITobj;
+		break;
+	case 3:
+		trObj = &ETObj;
+		break;
+	case 4:
+		trObj = &RTobj;
+		break;
+	default:
+		break;
+	}
+	foo1(trObj);
+
+
+
+	system("pause");
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	string type; 
+	geometry() {}
+	geometry(int w, int h)
+	{
+		width = w;
+		height = h;
+	}
+	virtual int s() = 0;
+
+	virtual int p() = 0;
+
+};
+class tetragon : public geometry
+{
+protected:
+	int c;
+	int d;
+public:
+	tetragon(int a, int b, int c1, int d1) :geometry(a, b)
+	{
+		c = c1;
+		d = d1;
+	}
+	virtual int p()
+	{
+		return width + height + c + d;
+	}
+};
+
+//class parallelogram : public tetragon
+//{
+//public:
+//	parallelogram(int a, int b):tetragon(a,b,a,b){}
+//	virtual int p()
+//	{
+//		return 2 * (width + height);
+//	}
+//	virtual int s()
+//	{
+//
+//	}
+//};
+
+class rectangle :public geometry
+{
+public:
+	rectangle() {};
+	rectangle(int w1, int h1) :geometry(w1, h1) {}
+	virtual int p() override
+	{
+
+
+		int h = 2 * (width + height);
+
+		return h;
+	}
+	virtual int s() override
+	{
+		return width * height;
+	}
+};
+class square : public rectangle
+{
+public:
+	square() {};
+	square(int side) : rectangle(side, side) {}
+};
+
+class triangle :protected geometry
+{
+protected:
+	double c;
+public:
+	string type;
+	triangle() {};
+	triangle(double a1, double b1, double c1) :geometry(a1, b1)
+	{
+		c = c1;
+	}
+	virtual int p() override
+	{
+		return width + height + c;
+	}
+
+	virtual int s() override
+	{
+		double k = p() / 2;
+		int result = sqrt(k * (k - width) * (k - height) * (k - c));
+		return result;
+	}
+};
+
+class isoscelesTriangle :public triangle
+{
+public:
+	isoscelesTriangle() {};
+	isoscelesTriangle(double a, double c) :triangle(a, a, c)
+	{
+	}
+
+	virtual int s()
+	{
+		double h = sqrt(width*width - c / 2 * c / 2);
+		double S = c * h / 2;
+		return S;
+	}
+
+};
+
+class equilateralTriangle :public isoscelesTriangle
+{
+public:
+	equilateralTriangle() {};
+	equilateralTriangle(double a1) :isoscelesTriangle(a1, a1) {}
+	int s()
+	{
+		double S1 = sqrt(3)*width*width / 2;
+		return S1;
+	}
+};
+
+class rectangularTriangle :public triangle
+{
+public:
+	string type;
+	rectangularTriangle() {};
+	rectangularTriangle(double a, double b, double c) :triangle(a, b, c) {}
+	int s()
+	{
+		return width * height / 2;
+	}
+};
+
+class circle :public geometry
+{
+protected:
+	int r;
+public:
+	circle() {};
+	circle(int radius)
+	{
+		r = radius;
+	}
+	int s()
+	{
+		return 3.14*r*r;
+	}
+	int p()
+	{
+		cout << "000";
+	}
+};
+
+class hexagon :public geometry
+{
+protected:
+	int c, d, e, f;
+public:
+	hexagon() {};
+	hexagon(int a1, int b1, int c1, int d1, int e1, int f1) :geometry(a1, b1)
+	{
+		c = c1;
+		d = d1;
+		e = e1;
+		f = f1;
+	}
+	hexagon(double a) :geometry(a, a) {}
+	int s()
+	{
+		return 3 * sqrt(3)*width*width / 2;
+	}
+	int p()
+	{
+		return width + height + c + d + e + f;
+	}
+};
+
+
+void foo(geometry *obj)
+{
+	cout << obj->type << " parimetr = " << obj->p() << " square = " << obj->s();
+}
+void foo1(triangle *trgl)
+{
+	cout << trgl->type << " parimetr = " << trgl->p() << " square = " << trgl->s();
+}
+int main()
+{
+	
+
+
+	rectangle Robj;
+	Robj.type = "rectangle";
+
+	square Sobj;
+	Sobj.type = "square";
+
+	triangle Tobj;
+	Tobj.type = "triangle";
+
+	isoscelesTriangle ITobj;
+	ITobj.type = "isosceles triangle";
+
+	equilateralTriangle ETObj;
+	ETObj.type = "equilateral triangle";
+
+	rectangularTriangle RTobj;
+	RTobj.type = "rectangular triangle";
+
+	circle Cobj;
+	Cobj.type = "circle";
+
+	hexagon Hobj;
+	Hobj.type = "hexagon";
+
+	int n;
+	cin >> n;
+
+	geometry * obj = NULL;
+	triangle * trObj = NULL;
+
+	switch 👎
+	{
+	case 1:
+		obj = &Robj;
+		foo(obj);
+
+		break;
+	case 2:
+		obj = &Sobj;
+		foo(obj);
+
+		break;
+	case 3:
+		obj = &Cobj;
+		foo(obj);
+
+		break;
+	case 4:
+		obj = &Hobj;
+		foo(obj);
+
+		break;
+	case 5:
+		trObj = &Tobj;
+		foo1(trObj);
+
+		break;
+	case 6:
+		trObj = &ITobj;
+		foo1(trObj);
+
+		break;
+	case 7:
+		trObj = &ETObj;
+		foo1(trObj);
+
+		break;
+	case 8:
+		trObj = &RTobj;
+		foo1(trObj);
+
+		break;
+	default:
+		break;
+	}
+	
+
+	system("pause");
+	return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+struct Node
+{
+	int data;
+	Node* next;
+	Node* prev;
+};
+
+//class List {
+//public:
+//	virtual int add(int index, int element) = 0;
+//	virtual void addFirst(int value) = 0;
+//	virtual void addLast(int value) = 0;
+//	virtual void clear() = 0;
+//	virtual bool contains(int element) = 0;
+//	virtual int get(int index) = 0;
+//	virtual int getFisrt() = 0;
+//	virtual int getLast() = 0;
+//	virtual int indexOf(int value) = 0;
+//	virtual int removeFirst() = 0;
+//	virtual int removeLast() = 0;
+//	virtual int remove(int index) = 0;
+//	virtual int toArray() = 0;
+//	virtual int size() = 0;
+//};
+
+class LinkedList {
+
+public:
+	int count = 0;
+	Node *head = NULL;
+
+	
+	int add(int index, int new_data) {
+
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+				index = 0;
+		}
+
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		returnNodeData->data = new_data;
+		return returnNodeData->data;
+	}
+
+	void addFirst(int addData)
+	{
+		count++;
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->next = head;
+		dataNode->prev = NULL;
+		if (head != NULL)
+		{
+			dataNode->prev = dataNode;
+		}
+		head = dataNode;
+	}
+
+
+	void addLast(int addData) {
+
+		count++;
+		Node *prev_node = head;
+		for (int i = 0; i < count - 2; i++)
+		{
+			prev_node = prev_node->next;
+		}
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->next = prev_node->next;
+		prev_node->next = dataNode;
+		dataNode->prev = prev_node;
+
+	}
+
+
+	void clear()
+	{
+		Node *node = head;
+		while (node != NULL)
+		{
+			delete node;
+			node = head->next;
+		}
+		cout << "the list is clear" << endl;
+	}
+
+	bool contains(int element)
+	{
+		Node *node = head;
+
+		while (node != NULL)
+		{
+			if (node->data == element)
+			{
+				return  true;
+			}
+			node = node->next;
+		}
+
+		return false;
+	}
+
+	int get(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		return returnNodeData->data;
+
+	}
+
+
+	int getFirst()
+	{
+		return head->data;
+	}
+
+
+	int getLast()
+	{
+		Node* lastElement = head;
+		while (lastElement->next != NULL)
+		{
+			lastElement = lastElement->next;
+		}
+		return lastElement->data;
+	}
+
+	int indexOf(int value)
+	{
+		int position;
+		Node* node = head;
+		bool present = false;
+		for (position = 0; position < count; position++) {
+
+			if (node->data == value)
+			{
+				present = true;
+				return position;
+			}			
+			node = node->next;
+		}
+		if (present)
+		{
+			return -1;//???
+		}
+	}
+
+	int removeFirst()
+	{
+		int element = head->data;
+		delete head;
+		return element;
+	}
+
+	int removeLast()
+	{
+		Node *node = head;
+		while (node != NULL)
+		{
+			if (node->next == NULL)
+			{
+				int element = node->data;
+				delete node;
+				return element;
+			}
+		}
+	}
+
+	int remove(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* removeIndex = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			removeIndex = removeIndex->next;
+		}
+		int element = removeIndex->data;
+		delete removeIndex;
+		return element;
+
+	}
+
+	int toArray()
+	{
+		int * arr = new int[count];
+		Node* node = head;
+		for (int i = 0; i < count; i++)
+		{
+			arr[i] = node->data;
+			node = node->next;
+			cout << arr[i] << " ";
+		}
+			return *arr;
+	}
+
+	int set(int index, int value)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		Node* node = head;
+		for (int i = 0; i < count - index - 1; i++)
+		{
+			node = node->next;
+		}
+		int k = node->data;
+		node->data = value;
+		return k;
+	}
+
+	int size()
+	{
+		return count;
+	}
+
+	void printList()
+	{
+		while (head != NULL) {
+			cout << head->data << " ";
+			head = head->next;
+		}
+		cout << endl;
+	}	
+};
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+
+		arr[n++] = num;
+
+
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int geti(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	int getFirst()
+	{
+		return arr[0];
+	}
+
+	int getLast()
+	{
+		return arr[n];
+	}
+
+	void remove(int index)
+	{
+		if (index <0 || index > n)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			index = 0;
+		}
+		arr[n--];
+		while (count == n)
+		{
+			count / 2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	int indexOf(int value)
+	{
+		bool present = false;
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == value)
+			{
+				return i;
+				present = true;
+			}
+		}
+		if (present)
+		{
+			cout << "no value found" << endl;
+		}
+
+	}
+
+	bool contains(int element)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == element)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void set(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+
+int main()
+{
+
+
+	LinkedList obj;
+	obj.addFirst(1);
+	obj.addFirst(8);
+	obj.addFirst(6);
+	obj.addFirst(25);
+	obj.addFirst(74);
+	obj.addFirst(17);
+	obj.addFirst(4);	
+	obj.addLast(99);
+
+	system("pause");
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+struct Node
+{
+	int data;
+	Node* next;
+	Node* prev;
+};
+
+//class List {
+//public:
+//	virtual void addFirst(int value) = 0;
+//	virtual void addLast(int value) = 0;
+//	virtual void clear() = 0;
+//	virtual bool contains(int element) = 0;
+//	virtual int get(int index) = 0;
+//	virtual int getFisrt() = 0;
+//	virtual int getLast() = 0;
+//	virtual int indexOf(int value) = 0;
+//	virtual int removeFirst() = 0;
+//	virtual int removeLast() = 0;
+//	virtual int remove(int index) = 0;
+//	virtual int toArray() = 0;
+//	virtual int size() = 0;
+//};
+
+class LinkedList {
+	int count = 0;
+	Node *head = NULL;
+	Node *tail = NULL;
+public:
+
+	void addFirst(int addData)
+	{
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->prev = NULL;
+		if (head == NULL)
+		{
+			dataNode->next = NULL;
+			tail = dataNode;
+		}
+		else
+		{
+			head->prev = dataNode;
+			dataNode->next = head;
+		}
+		head = dataNode;
+		count++;
+	}
+
+
+	void addLast(int addData) {
+
+		Node *prev_node = tail;
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		if (tail == NULL) {
+			dataNode->prev = NULL;
+			head = dataNode;
+		}
+		else {
+			tail->next = dataNode;
+			dataNode->prev = tail;
+		}
+		tail = dataNode;
+		count++;
+	}
+
+
+	bool contains(int element)
+	{
+		Node *node = head;
+
+		while (node != NULL)
+		{
+			if (node->data == element)
+			{
+				return  true;
+			}
+			node = node->next;
+		}
+
+		return false;
+	}
+
+	int get(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		if (index == 0)
+		{
+			return head->data;
+		}
+		if (index == count)
+		{
+			return tail->data;
+		}
+		Node* returnNodeData = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			returnNodeData = returnNodeData->next;
+		}
+		return returnNodeData->data;
+	}
+
+
+	int getLast()
+	{
+		return head->data;
+	}
+
+
+	int getFirst()
+	{
+		return tail->data;
+	}
+
+	int indexOf(int value)
+	{
+		int position;
+		Node* node = tail;
+		for (position = 1; position < count; position++) {
+
+			if (node->data == value)
+			{
+				return position;
+			}
+			node = node->prev;
+		}
+		return -1;
+	}
+
+	void clear()
+	{
+		Node *node = head;
+		while (node != NULL)
+		{
+			Node* k = node->prev;
+			delete node;
+			node = k;
+			count--;
+		}
+		cout << "the list is clear" << endl;
+	}
+
+	int removeFirst()
+	{
+		Node * prev_node = head->next;
+		Node * node = head;
+		int element = node->data;
+		delete node;
+		node = prev_node;
+		cout << "NEW HEAD IS " << node->data << endl;
+		count--;
+
+		return element;
+	}
+
+	int removeLast()
+	{
+		Node *next_node = tail->prev;
+		Node* node = tail;
+		int element = node->data;
+		delete node;
+		node = next_node;
+		cout << "NEW TAIL IS " << next_node->data << endl;
+		count--;
+		return element;
+	}
+
+
+	int remove(int index)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		if (index == 0)
+		{
+			removeFirst();
+		}
+		if (index == count)
+		{
+			removeLast();
+		}
+
+		Node* removeIndex = head;
+		for (int i = 0; i < count - index - 1; i++) {
+			removeIndex = removeIndex->next;
+		}
+		Node *node_next = removeIndex->next;
+		Node * node_prev = removeIndex->prev;
+		int element = removeIndex->data;
+		delete removeIndex;
+		node_next = node_prev;//????
+		return element;
+
+	}
+
+	int toArray()
+	{
+		int * arr = new int[count];
+		Node* node = head;
+		for (int i = 0; i < count; i++)
+		{
+			arr[i] = node->data;
+			node = node->next;
+			cout << arr[i] << " ";
+		}
+		return *arr;
+	}
+
+	int set(int index, int value)
+	{
+		if (index < 0 || index > count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		int k;
+		if (index == 0)
+		{
+			k = head->data;
+			head->data = value;
+			return k;
+		}
+		if (index == count)
+		{
+			k = tail->data;
+			tail->data = value;
+			return k;
+		}
+		Node* node = head;
+		for (int i = 0; i < count - index - 1; i++)
+		{
+			node = node->next;
+		}
+		k = node->data;
+		node->data = value;
+		return k;
+	}
+
+	int size()
+	{
+		return count;
+	}
+
+	/*void printFromHead()
+	{
+		Node* headPrint = head;
+		while (headPrint != NULL) {
+			cout << headPrint->data << " ";
+			headPrint = headPrint->prev;
+		}
+		cout << endl;
+	}*/
+};
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+		arr[n++] = num;
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int get(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	int getFirst()
+	{
+		return arr[0];
+	}
+
+	int getLast()
+	{
+		return arr[n];
+	}
+
+	int remove(int index)
+	{
+		if (index <0 || index > n)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		arr[n--];
+		while (count == n)
+		{
+			count / 2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	int indexOf(int value)
+	{
+		bool present = false;
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == value)
+			{
+				return i;
+				present = true;
+			}
+		}
+		if (present)
+		{
+			cout << "no value found" << endl;
+		}
+
+	}
+
+	bool contains(int element)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == element)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void set(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+
+int main()
+{
+	LinkedList obj;
+	obj.addFirst(1);
+	obj.addFirst(8);
+	obj.addFirst(6);
+	obj.addFirst(25);
+	obj.addFirst(74);
+	obj.addFirst(17);
+	obj.addFirst(4);
+
+
+	system("pause");
+	return 0;
+}
+14.03.2020, 13:45
+Вы отправили 14 марта 2020 г.
+#include <iostream>
+using namespace std;
+struct Node
+{
+	int data;
+	Node* next;
+	Node* prev;
+};
+
+class List {
+public:
+	virtual void addFirst(int value) = 0;
+	virtual void addLast(int value) = 0;
+	virtual void clear() = 0;
+	virtual bool contains(int element) = 0;
+	virtual int get(int index) = 0;
+	virtual int getFirst() = 0;
+	virtual int getLast() = 0;
+	virtual int indexOf(int value) = 0;
+	virtual int removeFirst() = 0;
+	virtual int removeLast() = 0;
+	virtual int remove(int index) = 0;
+
+	virtual int size() = 0;
+	virtual void printFromHead() = 0;
+	virtual void printFromTail() = 0;
+};
+
+class LinkedList : public List {
+	int count = 0;
+	Node* head = NULL;
+	Node* tail = NULL;
+public:
+
+	void addLast(int addData)
+	{
+		Node* dataNode = new Node();
+		dataNode->data = addData;
+		dataNode->next = NULL;
+		if (head == NULL)
+		{
+			dataNode->prev = NULL;
+			tail = dataNode;
+		}
+		else
+		{
+			head->next = dataNode;
+			dataNode->prev = head;
+		}
+		head = dataNode;
+		count++;
+	}
+
+
+	void addFirst(int addData) {
+		if (head == NULL)
+		{
+			addLast(addData);
+			return;
+		}
+
+		Node* firstNode = new Node();
+		firstNode->data = addData;
+		firstNode->next = tail;
+			tail->prev = firstNode;
+			firstNode->prev = NULL;
+		
+			tail = firstNode;
+		count++;
+	}
+
+
+	bool contains(int element)
+	{
+		Node* node = head;
+
+		while (node != NULL)
+		{
+			if (node->data == element)
+			{
+				return  true;
+			}
+			node = node->prev;
+		}
+
+		return false;
+	}
+
+	int get(int index)
+	{
+		if (index < 0 || index >= count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return NULL;
+		}
+		if (index == 0)
+		{
+			return tail->data;
+		}
+		Node* returnNodeData;
+		if (index == count-1)
+		{
+			return head->data;
+		}
+		if (index < count / 2)
+		{
+			returnNodeData = tail;
+			for (int i = 0; i < index; i++) {
+				returnNodeData = returnNodeData->next;
+			}
+		}
+		else {
+
+			returnNodeData = head;
+			for (int i = 0; i < count - index - 1; i++) {
+				returnNodeData = returnNodeData->prev;
+			}
+		}
+		return returnNodeData->data;
+	}
+
+
+	int getLast()
+	{
+		return head->data;
+	}
+
+
+	int getFirst()
+	{
+		return tail->data;
+	}
+
+	int indexOf(int value)
+	{
+		
+		Node* node = tail;
+		for (int position = 0; position < count; position++) {
+
+			if (node->data == value)
+			{
+				return position;
+			}
+			node = node->next;
+		}
+		return -1;
+	}
+
+	void clear()
+	{
+		while (tail != NULL)
+		{
+			Node* k = tail->next;
+			delete tail;
+			tail = k;
+		}
+		count = 0;
+		tail = NULL;
+		head = NULL;
+		cout << "the list is clear" << endl;
+	}
+	int removeLast()
+	{
+		Node* prevNode = head->prev;
+		prevNode->next = NULL;
+		int element = head->data;
+		delete head;
+		head = prevNode;
+		cout << "NEW HEAD IS " << head->data << endl;
+		count--;
+
+		return element;
+	}
+	int removeFirst()
+	{
+		Node* nextNode = tail->next;
+		nextNode->prev = NULL;
+		int element = tail->data;
+		delete tail;
+		tail = nextNode;
+		cout << "NEW TAIL IS " << tail->data << endl;
+		count--;
+		return element;
+	}
+	int remove(int index)
+	{
+		if (index < 0 || index >= count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		if (index == 0)
+		{
+			return removeFirst();
+		}
+		if (index == count-1)
+		{
+			return removeLast();
+		}
+		Node* removeNode;
+		if (index < count / 2)
+		{
+			removeNode = tail;
+			for (int i = 0; i < index; i++) {
+				removeNode = removeNode->next;
+			}
+		}
+		else {
+
+			removeNode = head;
+			for (int i = 0; i < count - index - 1; i++) {
+				removeNode = removeNode->prev;
+			}
+		}
+		int element = removeNode->data;
+		removeNode->prev->next = removeNode->next;
+		removeNode->next->prev = removeNode->prev;
+		delete removeNode;
+		return element;
+	}
+
+	
+
+	int set(int index, int value)
+	{
+		if (index < 0 || index >= count)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		int element;
+		Node* setNodeData = tail;
+		if (index < count / 2)
+		{
+			setNodeData = tail;
+			for (int i = 0; i < index; i++) {
+				setNodeData = setNodeData->next;
+			}
+		}
+		else {
+
+			setNodeData = head;
+			for (int i = 0; i < count - index - 1; i++) {
+				setNodeData = setNodeData->prev;
+			}
+		}
+		
+		element = setNodeData->data;
+		setNodeData->data = value;
+		return element;
+	}
+
+	int size()
+	{
+		return count;
+	}
+	
+
+	~LinkedList() {
+		clear();
+		cout << "destructor";
+	}
+
+	void printFromHead()
+	{
+		if (head != NULL) {
+			Node* headPrint = head;
+			while (headPrint != NULL) {
+				cout << headPrint->data << " ";
+				headPrint = headPrint->prev;
+			}
+			cout << endl;
+		}
+	}
+	void printFromTail()
+	{
+		if (tail != NULL)
+		{
+			Node* tailPrint = tail;
+			while (tailPrint != NULL) {
+				cout << tailPrint->data << " ";
+				tailPrint = tailPrint->next;
+			}
+			cout << endl;
+		}
+	}
+};
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+		arr[n++] = num;
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int get(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	int getFirst()
+	{
+		return arr[0];
+	}
+
+	int getLast()
+	{
+		return arr[n];
+	}
+
+	int remove(int index)
+	{
+		if (index <0 || index > n)
+		{
+			cout << "index must be greater than 0 and less than count" << endl;
+			return false;
+		}
+		arr[n--];
+		while (count == n)
+		{
+			count / 2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	int indexOf(int value)
+	{
+		bool present = false;
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == value)
+			{
+				return i;
+				present = true;
+			}
+		}
+		if (present)
+		{
+			cout << "no value found" << endl;
+		}
+
+	}
+
+	bool contains(int element)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (arr[i] == element)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void set(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+
+int main()
+{
+	List* obj = new LinkedList();
+	obj->addLast(1);
+	obj->addLast(1);
+	obj->addLast(1);
+	obj->addLast(1);
+	obj->addLast(1);
+	obj->addLast(1);
+	obj->addLast(1);
+	obj->addLast(1);
+	system("pause");
+	return 0;
+}
+
+#include <iostream>
+using namespace std;
+class Person 
+{
+private:
+	string FName;
+	string LName;
+	int age;
+public:
+	void setFName(string name)
+	{
+		FName = name;
+	}
+	void setLName(string Lname)
+	{
+		LName = Lname;
+	}
+	void setAge(int num)
+	{
+		if (num > 0)
+		{
+			age = num;
+		}
+		else age = 0;
+	}
+	string getFname()
+	{
+		return FName;
+	}
+	string getLname()
+	{
+		return LName;
+	}
+	int getAge()
+	{
+		return age;
+	}
+	void print()
+	{
+		cout << getAge << endl << getLname << endl << getFname;
+	}
+};
+int main()
+{
+	int n;
+	cin >> n;
+	Person *person = new Person[n];
+	for (int i = 0; i < n; i++)
+	{
+		Person p1 = person[i];
+		cin >> p1.setFName;
+		cin >> p1.setLName;
+		cin >> p1.setAge;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << i << "." << person[i].getFname << "," << person[i].getLname << "," << person[i].getAge;
+		cout << endl;
+	}
+	system("pause");
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+class ArrayList
+{
+	private:
+		int number;
+		int * arr;
+		int value;
+		int * arr1;
+public:
+	ArrayList array(int n)
+	{
+		arr = new int[n];
+		if (n >= 0)
+		{
+			number = n;
+		}
+		else number = 1;
+	}
+	int function()
+	{
+		int i, j;
+		for (i = 0; i < number; i++)
+		{
+			for (j = 0; j < 2 * number; j++)
+			{
+				arr[i] = arr1[j];
+			}
+		}
+		return arr1[j];
+	}
+	void Add(int val)
+	{
+		value = val;
+		int num;
+		for (int i = 0; i <= number; i++)
+		{
+			arr[i] = value;
+			if (i == number)
+			{
+				function();
+			}
+		}
+	}
+	int getLenght()
+	{
+		return //zangvaci arjeqavorvac masi qanaky(erkarutyuny)
+	}
+	int getArrayLenght()
+	{
+		
+		return arr1[].lenght();
+	}
+	int getI()
+	{
+		//uxarkum enq entadrenq 3 veradardznum e zangvaci 3-rd arjeqy...petq e lini lav inkapsulacvac
+	}
+	int remove()
+	{
+		//uxarkum enq 7-y...jnjum e 7-rd arjeqy...dra hajordnery het gcum
+	}
+	int removeFromTo()
+	{
+		//uxarkum enq 2 ev 7...jnjum e 2-ic 7 tvery...u jnjum zangvaci avelord "vandaknery"
+	}
+	int change()
+	{
+		//uxarkum enq arajin arjeqy index 2-rdy value...galis a entadrenq 10-rd indexov arjeqin veragrum voreve arjeq
+		//+-1 vandakov kara arjeqavori
+	}
+};
+
+int main()
+{
+	int n;
+	cin >> n;
+	ArrayList obj;
+	obj.array(n);
+	obj.Add(5);
+	obj.Add(4);
+	obj.Add(10);
+	system("pause");
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+
+		arr[n++] = num;
+
+
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int geti(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	void remove(int index)
+	{
+		arr[n--];
+		while (count == n)
+		{
+			count/2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	void removeFromTo(int start, int end)
+	{
+		int k = count - end;
+		for (int i = 0; i < k; i++) {
+			while (i >= start && i <= end)
+			{
+				i++;
+				n--;
+			}
+			
+		
+			if (n <= count)
+			{
+				count / 2;
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+		
+	}
+
+	void change(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+int main()
+{
+
+	ArrayList obj;
+	obj.add(0);
+	obj.add(1);
+	obj.add(2);
+	obj.add(3);
+	obj.add(4);
+	obj.add(5);
+	obj.add(6);
+	obj.add(7);
+	obj.add(8);
+	obj.add(9);
+	obj.add(10);
+	obj.add(11);
+
+	cout << "object length is " << obj.getLength() << endl;
+	cout << "array length is " << obj.getArrayLength() << endl;
+	for (int i = 0; i < obj.getLength(); i++) {
+
+		cout << obj.geti(i) << " ";
+	}
+	cout << endl;
+
+		//obj.remove(2);
+	obj.removeFromTo(2, 8);
+	cout << "object length is " << obj.getLength() << endl;
+		cout << "array length is " << obj.getArrayLength() << endl;
+	//	
+	//obj.change(2, 9);
+
+	cout << endl;
+
+	system("pause");
+	return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+class ArrayList {
+	int count;
+	int* arr;
+	int n = 0;
+public:
+
+	ArrayList(int c) {
+		if (c < 0) {
+			cout << "bacasakan er dra hamar 5 chapania";
+			arr = new int[5];
+			count = 5;
+		}
+		else {
+			arr = new int[c];
+			count = c;
+		}
+	}
+	ArrayList() {
+		arr = new int[5];
+		count = 5;
+	}
+
+	void add(int num) {
+
+		if (n == count) {
+			count = count * 2;
+			int* newArr = new int[count];
+			for (int i = 0; i < count / 2; i++) {
+				newArr[i] = arr[i];
+			}
+			delete[] arr;
+			arr = newArr;
+		}
+
+		arr[n++] = num;
+
+
+	}
+
+	int getLength() {
+		return n;
+	}
+
+	int getArrayLength() {
+		return count;
+	}
+
+	int geti(int index) {
+		if (index >= 0 && index < n) {
+			return arr[index];
+		}
+		cout << "invalid index";
+		return NULL;
+	}
+
+	void remove(int index)
+	{
+		arr[n--];
+		while (count == n)
+		{
+			count / 2;
+		}
+		for (int i = 0; i <= n; i++) {
+			{
+				if (i == index)
+				{
+					arr[i] = arr[i + 1];
+					i++;
+				}
+			}
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+
+	void removeFromTo(int start, int end)
+	{
+		int k = count - end;
+		int def = count / n;
+		
+		for (int i = 0; i < k; i++) {
+			while (i >= start && i <= end)
+			{
+				i++;
+				n--;
+			}
+			cout << arr[i] << " ";
+			for (int i = 1; i < def/2; i++)
+			{
+				count / 2;
+				cout << count;
+			}
+		}
+		cout << endl;
+		
+		
+	}
+
+	void change(int index, int value)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (i == index)
+			{
+				arr[index] = value;
+			}
+			cout << arr[i] << " ";
+		}
+
+	}
+};
+int main()
+{
+
+	ArrayList obj;
+	obj.add(0);
+	obj.add(1);
+	obj.add(2);
+	obj.add(3);
+	obj.add(4);
+	obj.add(5);
+	obj.add(6);
+	obj.add(7);
+	obj.add(8);
+	obj.add(9);
+	obj.add(10);
+	obj.add(11);
+
+	cout << "object length is " << obj.getLength() << endl;
+	cout << "array length is " << obj.getArrayLength() << endl;
+	for (int i = 0; i < obj.getLength(); i++) {
+
+		cout << obj.geti(i) << " ";
+	}
+	cout << endl;
+
+	//obj.remove(2);
+	obj.removeFromTo(2, 8);
+	cout << "object length is " << obj.getLength() << endl;
+	cout << "array length is " << obj.getArrayLength() << endl;
+	//	
+	//obj.change(2, 9);
+
+	cout << endl;
+
+	system("pause");
+	return 0;
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	geometry(){}
+	geometry(int w, int h)
+	{
+		w = width;
+		h = height;
+	}
+};
+class rectangle:public geometry
+{
+public:
+	rectangle(){}
+	rectangle(int w1, int h1) :geometry(w1, h1){}
+
+	int s()
+	{
+		return width * height;
+	}
+
+	int p()
+	{
+		return 2 * (width + height);
+	}
+};
+class square:public geometry,public rectangle
+{
+public:
+	square(){}
+	square(int side):geometry(side,side),rectangle(side,side){}
+};
+class triangle :public geometry
+{
+//protected:
+//	int a, b, c;
+public:
+	triangle(){}
+	//triangle(int a1, int b1, int c1)
+	//{
+	//	a = a1;
+	//	b = b1;
+	//	c = c1;
+	//}
+	triangle(int width, int height):geometry(width,height){}
+	int s()
+	{
+		return width * height / 2;
+	}
+	/*int p()
+	{
+		return a + b + c;
+	}*/
+};
+
+int main()
+{
+	rectangle rct(4, 9);
+	square sqr(6);
+	triangle trgl(2, 8);
+	cout << "rectrangle s = " << rct.s() << endl;
+	cout << "rectrangle p = " << rct.p() << endl;
+	cout << "triangle s = " << trgl.s() << endl;
+//	cout << "triangle p = " << trgl.p() << endl;
+	cout << "square s = " << sqr.s() << endl;
+	cout << "square p = " << sqr.p() << endl;
+
+
+	system("pause");
+	return 0;
+}
+27.02.2020, 17:48
+Вы отправили 27 февраля 2020 г.
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	
+	geometry(int w, int h)
+	{
+		w = width;
+		h = height;
+	}
+	virtual int s() = 0;
+	
+
+	virtual int p() = 0;
+	
+};
+class rectangle :public geometry
+{
+public:
+	
+	rectangle(int w1, int h1) :geometry(w1, h1) {}
+	virtual int p()
+	{
+		return 2 * (width + height);
+	}
+	virtual int s()
+	{
+		return width * height;
+	}
+};
+class square : public rectangle
+{
+public:
+	square(int side) : rectangle(side, side) {}
+	
+	
+};
+class triangle :protected geometry
+{
+	protected:
+	double c;
+public:
+	triangle(double a1, double b1, double c1) :geometry(a1, b1)
+	{
+		c = c1;
+	}
+	int p()
+	{
+		return width + height + c;
+	}
+
+	int s()
+	{
+		double k = p() / 2;
+		int result = sqrt(k * (k - width) * (k - height) * (k - c));
+		return result;
+	}
+
+};
+
+int main()
+{
+	rectangle rct(5, 3);
+	square sqr(4);
+	triangle trgl(3, 4, 5);
+	cout << "rectrangle s = " << rct.s() << endl;
+	cout << "rectrangle p = " << rct.p() << endl;
+	cout << "square s = " << sqr.s() << endl;
+	cout << "square p = " << sqr.p() << endl;
+	cout << "triangle s = " << trgl.s() << endl;
+	cout << "triangle p = " << trgl.p() << endl;
+	
+
+
+	system("pause");
+	return 0;
+}
+Вы отправили 27 февраля 2020 г.
+#include <iostream>
+using namespace std;
+class geometry
+{
+protected:
+	int width;
+	int height;
+public:
+	
+	geometry(int w, int h)
+	{
+		width = w;
+		height = h;
+	}
+	virtual int s() = 0;
+	
+
+	virtual int p() = 0;
+	
+};
+class rectangle :public geometry
+{
+public:
+	
+	rectangle(int w1, int h1) :geometry(w1, h1) {}
+	virtual int p() override
+	{
+		
+			
+			int h=2 * (width + height);
+			
+			return h;
+	}
+	virtual int s() override
+	{
+		return width * height;
+	}
+};
+class square : public rectangle
+{
+public:
+	square(int side) : rectangle(side, side) {}
+	
+	
+};
+class triangle :protected geometry
+{
+	protected:
+	double c;
+public:
+	triangle(double a1, double b1, double c1) :geometry(a1, b1)
+	{
+		c = c1;
+	}
+	int p()
+	{
+		return width + height + c;
+	}
+
+	int s()
+	{
+		double k = p() / 2;
+		int result = sqrt(k * (k - width) * (k - height) * (k - c));
+		return result;
+	}
+
+};
+
+int main()
+{
+	rectangle rct(5, 3);
+	square sqr(4);
+	triangle trgl(3, 4, 5);
+
+
+	cout << "rectrangle s = " << rct.s() << endl;
+	cout << "rectrangle p = " << rct.p() << endl;
+	cout << "square s = " << sqr.s() << endl;
+	cout << "square p = " << sqr.p() << endl;
+	cout << "triangle s = " << trgl.s() << endl;
+	cout << "triangle p = " << trgl.p() << endl;
+	
+
+
+	system("pause");
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+class ArrayList
+{
+	private:
+		int number;
+		int * arr;
+		int value;
+		int * arr1;
+public:
+	ArrayList array(int n)
+	{
+		arr = new int[n];
+		if (n >= 0)
+		{
+			number = n;
+		}
+		else number = 1;
+	}
+	void setArray(int n)
+	{
+		arr = new int[n];
+		if (n >= 0)
+		{
+			number = n;
+		}
+		else number = 1;
+	}
+	/*int function()
+	{
+		int i, j;
+		for (i = 0; i < number; i++)
+		{
+			for (j = 0; j < 2 * number; j++)
+			{
+				arr[i] = arr1[j];
+			}
+		}
+		return arr1[j];
+	}*/
+	void Add(int val)
+	{
+		
+		value = val;
+		for (int i = 0; i < sizeof(arr); i++)
+		{
+			arr[i] = value;
+		/*	if (i == number)
+			{
+				function();
+			}*/
+		}
+		cout << *arr << " ";
+	}
+	/*int getLenght()
+	{
+		
+	}*/
+	int getArrayLenght()
+	{
+		return sizeof(arr);
+	}
+	//int getI()
+	//{
+	//}
+	//int remove()
+	//{
+	//}
+	//int removeFromTo()
+	//{
+	//}
+	//int change()
+	//{
+	//	
+	//}
+};
+
+int main()
+{
+	int n;
+	cin >> n;
+	ArrayList obj;
+	obj.setArray(n);
+	obj.Add(5);
+	obj.Add(7);
+	obj.Add(10);
+	obj.Add(7);
+	obj.Add(25);
+	obj.Add(9);
+	cout << endl << obj.getArrayLenght();
+	system("pause");
+	return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+class AllInOne {
+private:
+
+	int number;
+public:
+
+	void setNum(int n)
+	{
+		if (n >= 0)
+		{
+			number = n;
+		}
+		else number = 0;
+	}
+
+	int sumFunction()
+	{
+		
+		int sum = 0;
+
+		for (int i = 0; i <= number; i++)
+		{
+			sum = sum + i;
+		}
+		
+		return sum;
+	}
+	int faktFunction()
+	{
+		int fakt = 1;
+
+		for (int i = 1; i <= number; i++)
+		{
+			fakt = fakt * i;
+		}
+		return fakt;
+	}
+	//AllInOne fibFunction()
+	//{
+	//	AllInOne obj;
+	//	int b = sum + fakt;
+	//	cout << "sum + fakt = " << b << endl;
+	//	int count = 0;
+	//	int result = 0;
+	//	int num1 = 0, num2 = 1, next = 0;
+	//	cout << "Fibonacci hajordakanutyun - ";
+	//	for (int i = 2; i < b; i++)
+	//	{
+	//		if (num1 >= b)
+	//		{
+	//			break;
+	//		}
+	//		result = num1 + result;
+	//		cout << num1 << " ";
+	//		next = num1 + num2;
+	//		num1 = num2;
+	//		num2 = next;
+	//		count++;
+	//	}
+	//	cout << endl;
+	//	int end = result / count;
+	//	obj.fib = end;
+	//	return obj;
+	//}
+};
+
+
+int main()
+{
+	AllInOne obj;
+	int n;
+	cin >> n;
+	obj.setNum(n);
+	cout<<obj.faktFunction();
+	system("pause");
+	return 0;
+}
